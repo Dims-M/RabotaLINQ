@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace RabotaLINQ
 {
@@ -16,6 +17,8 @@ namespace RabotaLINQ
         {
             InitializeComponent();
         }
+
+        BL bLTest = new BL();
 
         //при загрузке форма   
         private void Form1_Load(object sender, EventArgs e)
@@ -28,17 +31,62 @@ namespace RabotaLINQ
         private void Button1_Click(object sender, EventArgs e)
         {
 
+            // ChekerZ(); // метод с поискам по умолчания
+            ChekerParams1(textBox2.Text);
         }
         //Кнока Очистить
         private void Button3_Click(object sender, EventArgs e)
         {
 
+            textBox1.Text = "Происходит очистка текста";
+            label1.Text = "Происходит очистка журнала событий";
+
+            //Thread.Sleep(1000);
+
+            textBox1.Text ="";
+            label1.Text = "";
         }
 
         //Выход из формы
         private void Button2_Click(object sender, EventArgs e)
         {
+            Close();
+        }
 
+
+        //МЕТОДЫ
+
+      private void ChekerZ()
+        {
+            var temp_data = bLTest.SelectLinqPlanetDefault("М");
+
+           textBox1.Text = bLTest.VividLista(temp_data);
+            label1.Text = "Работа с Листом \t\nКласс BL";
+        }
+        /// <summary>
+        /// Метод потска из текст бокса 2
+        /// </summary>
+        /// <param name="paramSeath"></param>
+        private void ChekerParams1(string paramSeath)
+        {
+            var temp_data = bLTest.SelectLinqPlanetDefault(paramSeath);
+
+           textBox1.Text = bLTest.VividLista(temp_data);
+            label1.Text = "Работа с Листом \t\nКласс BL";
+        }
+
+        //********************************************************
+        //Прочитать журнал собыйтий 
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = bLTest.GetLogVents();
+        }
+
+        //Кнопка поиска 
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            ChekerParams1(textBox2.Text);
         }
     }
+
 }
