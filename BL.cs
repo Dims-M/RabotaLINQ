@@ -14,6 +14,7 @@ namespace RabotaLINQ
     {
       private  string logEvents = "Журнал событий";
         List<string> listData;
+
         string[] planet =
         {
             "Меркурий",
@@ -26,13 +27,21 @@ namespace RabotaLINQ
             "Нептун",
         };
 
+        string[] arr2 =
+       {
+            "Земля",
+            "Плутон",
+            "Цицера",
+            
+        };
+
         /// <summary>
         /// Метод ищет в массиве строк нужное значение. Возращает лист
         /// </summary>
         /// <param name="massPlanet">Массив строк</param>
         /// <param name="seach">Поисковое значение</param>
         /// <returns></returns>
-    public  List<string> SelectLinqPlanet(string[] massPlanet, string seach )
+        public  List<string> SelectLinqPlanet(string[] massPlanet, string seach )
         {
             List<string> listTemp = new List<string>();
 
@@ -101,6 +110,41 @@ namespace RabotaLINQ
             return logEvents;
         }
 
+        /// <summary>
+        /// Работаем с Linq и с разностью множеств.
+        /// </summary>
+        /// <returns></returns>
+        public string RabLingPrimer1()
+        {
+            string tempM = $"Cодержимое множест {System.Environment.NewLine}";
+            //В список попадают только уникальные элемены. дубли убираются.
+            var result = planet.Except(arr2); // разность множест
+
+            foreach (var strTemp in result)
+            {
+                tempM +=  $"{strTemp} {System.Environment.NewLine}";
+
+            }
+
+            result = planet.Intersect(arr2);
+            tempM += $"Совпадения в множествах {System.Environment.NewLine}";
+
+            foreach (var strTemp in result)
+            {
+                tempM += $"{strTemp} {System.Environment.NewLine}";
+            }
+
+            tempM += $"Cовмещение в множествах из других колекций{System.Environment.NewLine}";
+            result = planet.Union(arr2);
+            foreach (var strTemp in result)
+            {
+                tempM += $"{strTemp} {System.Environment.NewLine}";
+            }
+            logEvents += $"Метод отбора Множеств \n {System.Environment.NewLine} ";
+
+            return tempM;
+        }
+
 
       public List<string> GetListData()
         {
@@ -110,5 +154,7 @@ namespace RabotaLINQ
         }
 
 
+
     }
 }
+ 

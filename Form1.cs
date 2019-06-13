@@ -32,7 +32,9 @@ namespace RabotaLINQ
         {
 
             // ChekerZ(); // метод с поискам по умолчания
-            ChekerParams1(textBox2.Text);
+            // ChekerParams1(textBox2.Text);
+
+            ZapuskMethodLinq(); // работаем с множиством.
         }
         //Кнока Очистить
         private void Button3_Click(object sender, EventArgs e)
@@ -63,8 +65,10 @@ namespace RabotaLINQ
            textBox1.Text = bLTest.VividLista(temp_data);
             label1.Text = "Работа с Листом \t\nКласс BL";
         }
+
+
         /// <summary>
-        /// Метод потска из текст бокса 2
+        /// Метод поиска из текст бокса 2
         /// </summary>
         /// <param name="paramSeath"></param>
         private void ChekerParams1(string paramSeath)
@@ -73,6 +77,15 @@ namespace RabotaLINQ
 
            textBox1.Text = bLTest.VividLista(temp_data);
             label1.Text = "Работа с Листом \t\nКласс BL";
+        }
+
+
+        private void ZapuskMethodLinq()
+        {
+          // var temp_data = bLTest.SelectLinqPlanetDefault(paramSeath);
+
+            textBox1.Text = bLTest.RabLingPrimer1();
+            label1.Text = "Работа с Ling №1 \t\nКласс BL";
         }
 
         //********************************************************
@@ -87,6 +100,8 @@ namespace RabotaLINQ
         {
             ChekerParams1(textBox2.Text);
         }
+
+
     }
 
 }
