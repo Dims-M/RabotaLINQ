@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<sputniks>
+  
+  <sputnik id ="1">
+    <planet_id>3</planet_id>
+    <name>Луна</name>
+  </sputnik>
+
+  <sputnik id ="2">
+    <planet_id>5</planet_id>
+    <name>Европа</name>
+  </sputnik>
+
+  <sputnik id ="3">
+    <planet_id>5</planet_id>
+    <name>Леда</name>
+  </sputnik>
+  
+</sputniks>

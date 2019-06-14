@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace RabotaLINQ
 {
@@ -143,6 +144,24 @@ namespace RabotaLINQ
             logEvents += $"Метод отбора Множеств \n {System.Environment.NewLine} ";
 
             return tempM;
+        }
+
+        //РАбота XML документами
+
+       public void XML_Job()
+        {
+            string pathFileXml = @"C:\Users\Dim\source\repos\RabotaLINQ\Sp.xml";
+
+            XDocument sputniks = XDocument.Load(pathFileXml);
+            var Sputniks = from sp in sputniks.Element("sputniks").Elements("sputnik") // Выбираем сначало корневой элемент. Потом нужные дочерние элементы
+                           select new Sputnik
+                           {
+                               id = int.Parse(sp.Attribute("id").Value), // gjkexftv
+                               planet_id = int.Parse(sp.Element("planet_id").Value),
+                               name = sp.Element("name").Value
+
+                           };
+
         }
 
 
