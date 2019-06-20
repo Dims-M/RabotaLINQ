@@ -34,7 +34,7 @@ namespace RabotaLINQ
             // ChekerZ(); // метод с поискам по умолчания
             // ChekerParams1(textBox2.Text);
 
-            ZapuskMethodLinq(); // работаем с множиством.
+            ZapuskMethodLinq(); // работаем с множеством.
         }
         //Кнока Очистить
         private void Button3_Click(object sender, EventArgs e)
@@ -84,7 +84,9 @@ namespace RabotaLINQ
         {
           // var temp_data = bLTest.SelectLinqPlanetDefault(paramSeath);
 
-            textBox1.Text = bLTest.RabLingPrimer1();
+            //textBox1.Text = bLTest.RabLingPrimer1();
+            textBox1.Text = bLTest.testXmlTTN();
+            //textBox1.Text = bLTest.XML_Job(); //Работает
             label1.Text = "Работа с Ling №1 \t\nКласс BL";
         }
 

@@ -148,20 +148,63 @@ namespace RabotaLINQ
 
         //РАбота XML документами
 
-       public void XML_Job()
+       public string XML_Job()
         {
             string pathFileXml = @"C:\Users\Dim\source\repos\RabotaLINQ\Sp.xml";
 
             XDocument sputniks = XDocument.Load(pathFileXml);
+
             var Sputniks = from sp in sputniks.Element("sputniks").Elements("sputnik") // Выбираем сначало корневой элемент. Потом нужные дочерние элементы
-                           select new Sputnik
+                           select new Sputnik // новый обьект для хранения 
                            {
-                               id = int.Parse(sp.Attribute("id").Value), // gjkexftv
-                               planet_id = int.Parse(sp.Element("planet_id").Value),
-                               name = sp.Element("name").Value
+                               id = int.Parse(sp.Attribute("id").Value), // получаем атрибуты из xml страницы. 
+                               planet_id = int.Parse(sp.Element("planet_id").Value), // получаем конкретные елементы(строки) xml страницы.
+                               name = sp.Element("name").Value //// получаем конкретные елементы(строки)
 
                            };
 
+            string tempCount = "Содержимое хмл" + Environment.NewLine;
+
+            foreach (var temEgais in Sputniks)
+            {
+                tempCount += $"ID Планеты:{temEgais.id}, ID:{temEgais.planet_id} Название планеты {temEgais.name} {Environment.NewLine}";
+            }
+
+            return tempCount;
+        }
+
+        public string testXmlTTN()
+        {
+            //TestEgais testEgais;
+
+            string pathFileXml = @"C:\Users\Dim\source\repos\RaboraXML\RaboraXML\TTN8586435953960426846.xml";
+            //string pathFileXml = @"C:\Users\Dim\source\repos\RabotaLINQ\Sp.xml";
+            //string pathFileXml = @"C:\Users\Dim\source\repos\RabotaLINQ\users.xml"; //Работает
+            //string pathFileXml = @"users.xml";
+
+            string temStr = "";
+
+            XDocument EGAIS_Document = XDocument.Load(pathFileXml); // загружаем хмл файл
+
+          //  var Egais = from egais in EGAIS_Document.Element("users").Elements("user")
+            var Egais = from egais in EGAIS_Document.Element("Documents").Elements("Header")
+                        select new TestEgais
+                        {
+                            ttn = egais.Element("Identity").Value,
+                            FullName = egais.Element("ShippingDate").Value
+
+                        }
+                        ;
+
+
+            string tempCount ="Содержимое хмл"+ Environment.NewLine;
+
+            foreach (var temEgais in Egais)
+            {
+                tempCount += $"Номер накладной:{temEgais.ttn}, Имя продукции:{temEgais.FullName} {Environment.NewLine}";
+            }
+
+            return tempCount;
         }
 
 
