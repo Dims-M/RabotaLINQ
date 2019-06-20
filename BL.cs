@@ -190,8 +190,8 @@ namespace RabotaLINQ
             var Egais = from egais in EGAIS_Document.Element("Documents").Elements("Header")
                         select new TestEgais
                         {
-                            ttn = egais.Element("Identity").Value,
-                            FullName = egais.Element("ShippingDate").Value
+                            ttn = egais.Element("NUMBER").Value,
+                            FullName = egais.Element("Type").Value
 
                         }
                         ;
