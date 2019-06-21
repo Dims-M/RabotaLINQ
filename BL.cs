@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Xml;
 
 namespace RabotaLINQ
 {
@@ -187,28 +188,89 @@ namespace RabotaLINQ
             XDocument EGAIS_Document = XDocument.Load(pathFileXml); // загружаем хмл файл
 
           //  var Egais = from egais in EGAIS_Document.Element("users").Elements("user")
-            var Egais = from egais in EGAIS_Document.Element("Documents").Elements("Header")
+            var Egais = from egais in EGAIS_Document.Element("Documents").Elements("Shipper")
                         select new TestEgais
                         {
-                            ttn = egais.Element("NUMBER").Value,
-                            FullName = egais.Element("Type").Value
+                            ttn = egais.Attribute("INN").Value,
+                            FullName = egais.Element("KPP").Value
 
                         }
                         ;
 
-
+           
             string tempCount ="Содержимое хмл"+ Environment.NewLine;
 
             foreach (var temEgais in Egais)
             {
                 tempCount += $"Номер накладной:{temEgais.ttn}, Имя продукции:{temEgais.FullName} {Environment.NewLine}";
+
             }
+
 
             return tempCount;
         }
 
+        /// <summary>
+        /// Тестовой метод систем хмл
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
+        public string TestJobXML_Metanit(string filepath = "users.xml")
+        {
+            string tempStrSeach = "Содержимое выборки111";
 
-      public List<string> GetListData()
+            XmlDocument xDoc = new XmlDocument(); // Весь хмл документ
+
+            xDoc.Load(filepath); // загрузка в память.
+
+            XmlElement xRoot = xDoc.DocumentElement; // получим основной корневой элемент
+
+            // обход всех узлов в корневом элементе
+            foreach (XmlNode xnode in xRoot)
+            {
+                // получаем атрибут name
+                //if (xnode.Attributes.Count > 0)
+                //{
+                   // XmlNode attr = xnode.Attributes.GetNamedItem("Document");
+                   // if (attr != null)
+                         //tempStrSeach += $"{attr.Value}";
+             //   }
+                // обходим все дочерние узлы элемента user
+                foreach (XmlNode childnode in xnode.ChildNodes) //XmlNode  отдельный узел в документе
+                {
+                    // если узел - company
+                    if (childnode.Name == "FSRAR_ID")
+                    {
+                        tempStrSeach += $"Уникальный FSRAR: {childnode.InnerText}{Environment.NewLine}"; //Свойство InnerXml возвращает всю внутреннюю разметку xml узла
+
+                        
+                    }
+
+                    if (childnode.Name == "WayBill_v3")
+                    {
+                        if (childnode== "TTN")
+                        {
+                            tempStrSeach += $"Номер ТТН: {childnode.InnerText}{Environment.NewLine}"; //Свойство InnerXml возвращает всю внутреннюю разметку xml узла
+                        }
+                        }
+                }
+
+
+            }
+
+            return tempStrSeach;
+        }
+
+        public string TestLig_Meta()
+        {
+            string resulXml = "Результат выборки";
+
+
+
+
+            return null;
+        }
+            public List<string> GetListData()
         {
 
 
