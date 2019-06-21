@@ -261,6 +261,9 @@ namespace RabotaLINQ
             return tempStrSeach;
         }
 
+        //Пример обычной сортировки
+        //https://www.youtube.com/watch?v=HdONfP-wffw&list=PLaW87pN44q2lv6ZZ99MCKXlgA8ZRSVAh1&t=1s
+
         public string TestLig_Meta(string filePath = "users.xml")
         {
             string resulXml = "Результат выборки";
