@@ -86,7 +86,8 @@ namespace RabotaLINQ
 
             //textBox1.Text = bLTest.RabLingPrimer1();
            // textBox1.Text = bLTest.testXmlTTN(); // работо с хмл Егаис
-            textBox1.Text = bLTest.TestJobXML_Metanit("TTN8586435953960426846.xml");  
+            //textBox1.Text = bLTest.TestJobXML_Metanit("TTN8586435953960426846.xml");  
+            textBox1.Text = bLTest.TestLig_Meta("TTN8586435953960426846.xml");
             //textBox1.Text = bLTest.XML_Job(); //Работает
             label1.Text = "Работа с Ling №1 \t\nКласс BL";
         }

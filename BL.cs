@@ -248,7 +248,7 @@ namespace RabotaLINQ
 
                     if (childnode.Name == "WayBill_v3")
                     {
-                        if (childnode== "TTN")
+                        if (childnode.Name== "TTN")
                         {
                             tempStrSeach += $"Номер ТТН: {childnode.InnerText}{Environment.NewLine}"; //Свойство InnerXml возвращает всю внутреннюю разметку xml узла
                         }
@@ -261,12 +261,27 @@ namespace RabotaLINQ
             return tempStrSeach;
         }
 
-        public string TestLig_Meta()
+        public string TestLig_Meta(string filePath = "users.xml")
         {
             string resulXml = "Результат выборки";
 
+            XDocument xdoc = XDocument.Load(filePath); // загружаем в память док хмл 
 
+            foreach (XElement phoneElement in xdoc.Element("Documents").Elements("Header")) // перебор элементов
+            {
+                //XAttribute nameAttribute = phoneElement.Attribute("name");
+                XElement companyElement = phoneElement.Element("NUMBER");
+                XElement priceElement = phoneElement.Element("Date");
 
+               // if (nameAttribute != null && companyElement != null && priceElement != null)
+                if (companyElement != null && priceElement != null)
+                    {
+                    //  resulXml +=  $"Смартфон: {nameAttribute.Value}";
+                    resulXml += $"Компания: {companyElement.Value}";
+                   // Console.WriteLine("Цена: {0}", priceElement.Value);
+                }
+                Console.WriteLine();
+            }
 
             return null;
         }
