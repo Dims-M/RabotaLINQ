@@ -273,17 +273,15 @@ namespace RabotaLINQ
                 XElement companyElement = phoneElement.Element("NUMBER");
                 XElement priceElement = phoneElement.Element("Date");
 
-               // if (nameAttribute != null && companyElement != null && priceElement != null)
-                if (companyElement != null && priceElement != null)
-                    {
+               
                     //  resulXml +=  $"Смартфон: {nameAttribute.Value}";
                     resulXml += $"Компания: {companyElement.Value}";
                    // Console.WriteLine("Цена: {0}", priceElement.Value);
-                }
-                Console.WriteLine();
+                
+                
             }
 
-            return null;
+            return resulXml;
         }
             public List<string> GetListData()
         {
